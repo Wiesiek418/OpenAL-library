@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\sound",
+    "\\test"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\test\\CantinaBand60.wav",
   "PreviewInSolutionExplorer": false
 }

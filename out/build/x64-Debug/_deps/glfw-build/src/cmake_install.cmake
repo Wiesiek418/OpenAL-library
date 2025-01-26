@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-src/src
+# Install script for directory: D:/Projekty/Vulkan/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-src/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "D:/Projekty/Vulkan/OpenGL Projekt/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,6 +33,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-build/src/glfw3.lib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/Projekty/Vulkan/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-build/src/glfw3.lib")
 endif()
 

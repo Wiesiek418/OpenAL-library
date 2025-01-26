@@ -32,10 +32,21 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw)
 
+
+FetchContent_Declare(
+	glm
+	GIT_REPOSITORY	https://github.com/g-truc/glm.git
+	GIT_TAG 	bf71a834948186f4097caa076cd2663c69a10e1e #refs/tags/1.0.1
+)
+
+FetchContent_MakeAvailable(glm)
+
 add_executable(main
 	src/main.cpp
 	lib/glad.c
-)
+	src/sound/soundObject.cpp
+    src/camera.hpp
+	src/sound/soundLoader.cpp "src/sound/soundLoader.h")
 
 include_directories(
 	${glfw_SOURCE_DIR}/include    # Headers in ./GLFW
@@ -43,4 +54,7 @@ include_directories(
 	.
 )
 
-target_link_libraries(main PRIVATE glfw)
+target_link_libraries(main PRIVATE glfw glm)
+
+add_subdirectory(lib/openal-soft)
+target_link_libraries(main PRIVATE OpenAL)

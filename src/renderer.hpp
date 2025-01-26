@@ -1,6 +1,9 @@
 
 #pragma once
 
+#include "./camera.hpp"
+#include <glm/gtc/type_ptr.hpp>
+
 class Renderer {
 
 	private:
@@ -8,7 +11,9 @@ class Renderer {
 		GLuint m_prog;
 		GLuint m_vbo;
 		GLuint m_vao;
-
+		
+		Camera camera;
+		glm::mat4 projection;
 	private:
 
 		GLuint compileShader(GLenum type, const char* source) {
@@ -82,16 +87,18 @@ class Renderer {
 			const char* vertex_source = R"(
 				#version 330 core
 
-				in vec2 iPos;
-				in vec3 iColor;
+				layout(location = 0) in vec2 iPos;
+				layout(location = 1) in vec3 iColor;
+
+				uniform mat4 uView;
+				uniform mat4 uProjection;
 
 				out vec3 vColor;
 
 				void main() {
-					gl_Position = vec4(iPos, -1.0, 1.0);
+					gl_Position = uProjection * uView * vec4(iPos, -1.0, 1.0);
 					vColor = iColor;
-				}
-			)";
+				})";
 
 			const char* fragment_source = R"(
 				#version 330 core
@@ -104,6 +111,7 @@ class Renderer {
 					fColor = vec4(vColor, 1);
 				}
 			)";
+
 
 			GLuint vert = compileShader(GL_VERTEX_SHADER, vertex_source);
 			GLuint frag = compileShader(GL_FRAGMENT_SHADER, fragment_source);
@@ -124,7 +132,10 @@ class Renderer {
 			//	  X      Y      R      G      B
 				-1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
 				 1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-				 0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+				 1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+				 -1.0f,  1.0f,  0.3f,  0.3f,  0.3f,
+				 -1.0f, -1.0f,  0.6f,  0.6f,  0.6f,
+				 1.0f,  1.0f,  0.9f,  0.9f,  0.9f,
 			};
 
 			GLuint vbo;
@@ -175,14 +186,39 @@ class Renderer {
 			glClearColor(0.0, 0.0, 0.0, 1.0);
 		}
 
+		Renderer(int width, int height) {
+			initShaders();
+			initVertexBuffer();
+			initVertexArray();
+
+			// set fixed-function back buffer clear color, 4th value is used as the clear value for the depth buffer
+			glClearColor(0.0, 0.0, 0.0, 1.0);
+
+			projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
+		}
+
 		// draw our triangle to the back buffer
 		void draw() {
 
 			// clear the back buffer
 			glClear(GL_COLOR_BUFFER_BIT);
 
+
+			GLuint viewLoc = glGetUniformLocation(m_prog, "uView");
+			GLuint projLoc = glGetUniformLocation(m_prog, "uProjection");
+
+			if (viewLoc == -1) {
+				printf("Error: uView not found in shader!\n");
+			}
+			
+			if (projLoc == -1) {
+				printf("Error: uProjection not found in shader!\n");
+			}
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera.getViewMatrix()));
+			glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
 			// draw 3 points based on the current settings and bound VAO and Program, the currently bound VBO is irrelevant
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			glDrawArrays(GL_TRIANGLES, 0, 6);
 		}
 
 		// perform cleanup, frees all resources
@@ -191,5 +227,12 @@ class Renderer {
 			glDeleteBuffers(1, &this->m_vbo);
 			glDeleteVertexArrays(1, &this->m_vao);
 		}
+
+
+		Camera& getCamera()
+		{
+			return camera;
+		}
+
 
 };

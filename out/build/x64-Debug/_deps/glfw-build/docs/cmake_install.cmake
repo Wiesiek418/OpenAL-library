@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-src/docs
+# Install script for directory: D:/Projekty/Vulkan/OpenGL Projekt/out/build/x64-Debug/_deps/glfw-src/docs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "D:/Projekty/Vulkan/OpenGL Projekt/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

@@ -1,7 +1,7 @@
-prefix=C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/install/x64-Debug
+prefix=D:/Projekty/Vulkan/OpenGL Projekt/out/install/x64-Debug
 exec_prefix=${prefix}
-includedir=C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/install/x64-Debug/include
-libdir=C:/Users/MSI GAMING/Desktop/Programowanie HERE/SilnikProjekt/OpenGL Projekt/out/install/x64-Debug/lib
+includedir=D:/Projekty/Vulkan/OpenGL Projekt/out/install/x64-Debug/include
+libdir=D:/Projekty/Vulkan/OpenGL Projekt/out/install/x64-Debug/lib
 
 Name: GLFW
 Description: A multi-platform library for OpenGL, window and input
