@@ -5,6 +5,12 @@
     "\\src\\sound",
     "\\test"
   ],
-  "SelectedNode": "\\test\\CantinaBand60.wav",
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\src\\sound\\soundObject.h",
+  "PreviewInSolutionExplorer": false,
+  "OutputFoldersPerTargetSystem": {
+    "Local Machine": [
+      "out\\build\\x64-Debug",
+      "out\\install\\x64-Debug"
+    ]
+  }
 }
